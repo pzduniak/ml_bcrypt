@@ -75,10 +75,12 @@ int CFunctions::BcryptDigest ( lua_State* L )
 
 		crypt_rn( key, salt, hash, sizeof( hash ) );
 
-		lua_pushstring( L, hash );
+		lua_pushlstring( L, hash, sizeof( hash ) );
 
 		return 1;
     }
+
+	lua_pushboolean( L, false );
     return 0;
 }
 
@@ -98,10 +100,12 @@ int CFunctions::BcryptSalt( lua_State* L ) {
 		
 		crypt_gensalt_rn( "$2y$", logRounds, entropy, sizeof( entropy ), salt, sizeof( salt ) );
 
-		lua_pushstring( L, salt );
+		lua_pushlstring( L, salt, sizeof( salt ) );
 
 		return 1;
 	}
+
+	lua_pushboolean( L, false );
 	return 0;
 }
 
@@ -122,5 +126,7 @@ int CFunctions::BcryptVerify( lua_State* L ) {
 
 		return 1;
 	}
+
+	lua_pushboolean( L, false );
 	return 0;
 }
