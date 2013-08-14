@@ -39,8 +39,8 @@ MTAEXPORT void RegisterFunctions ( lua_State * luaVM )
     if ( pModuleManager && luaVM )
     {
         pModuleManager->RegisterFunction ( luaVM, "bcrypt_digest", CFunctions::BcryptDigest );
-		pModuleManager->RegisterFunction ( luaVM, "bcrypt_salt", CFunctions::BcryptSalt );
-		pModuleManager->RegisterFunction ( luaVM, "bcrypt_verify", CFunctions::BcryptVerify );
+        pModuleManager->RegisterFunction ( luaVM, "bcrypt_salt", CFunctions::BcryptSalt );
+        pModuleManager->RegisterFunction ( luaVM, "bcrypt_verify", CFunctions::BcryptVerify );
     }
 }
 

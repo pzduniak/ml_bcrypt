@@ -71,17 +71,15 @@ int CFunctions::BcryptDigest ( lua_State* L )
 		const char* salt = luaL_checkstring( L, 2 );
 
 		char hash[ HASH_SIZE ];
-		memset( hash, 0, sizeof( hash ) );
+        crypt_rn( key, salt, hash, HASH_SIZE );
 
-		crypt_rn( key, salt, hash, sizeof( hash ) );
-
-		lua_pushlstring( L, hash, sizeof( hash ) );
+		lua_pushlstring( L, hash, HASH_SIZE );
 
 		return 1;
     }
 
 	lua_pushboolean( L, false );
-    return 0;
+    return 1;
 }
 
 int CFunctions::BcryptSalt( lua_State* L ) {
@@ -106,7 +104,7 @@ int CFunctions::BcryptSalt( lua_State* L ) {
 	}
 
 	lua_pushboolean( L, false );
-	return 0;
+	return 1;
 }
 
 int CFunctions::BcryptVerify( lua_State* L ) {
@@ -128,5 +126,5 @@ int CFunctions::BcryptVerify( lua_State* L ) {
 	}
 
 	lua_pushboolean( L, false );
-	return 0;
+	return 1;
 }
