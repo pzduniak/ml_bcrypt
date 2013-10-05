@@ -4,9 +4,9 @@
 *
 *  ml_base, External lua add-on module
 *
-*  Copyright © 2003-2008 MTA.  All Rights Reserved.
+*  Copyright ï¿½ 2003-2008 MTA.  All Rights Reserved.
 *
-*  Grand Theft Auto is © 2002-2003 Rockstar North
+*  Grand Theft Auto is ï¿½ 2002-2003 Rockstar North
 *
 *  THE FOLLOWING SOURCES ARE PART OF THE MULTI THEFT
 *  AUTO SOFTWARE DEVELOPMENT KIT AND ARE RELEASED AS
@@ -28,10 +28,6 @@ extern "C"
 #else
     #define MTAEXPORT extern "C"
 #endif
-
-#include <list>
-#include <vector>
-// Obviously i can't get us this so other includes will most likely be needed later on
 
 using namespace std;
 
