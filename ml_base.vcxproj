@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -17,13 +17,13 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -122,8 +122,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CFunctions.cpp" />
-    <ClCompile Include="CThread.cpp" />
-    <ClCompile Include="CThreadData.cpp" />
     <ClCompile Include="ml_base.cpp" />
     <ClCompile Include="extra\CLuaArgument.cpp" />
     <ClCompile Include="extra\CLuaArguments.cpp" />
@@ -131,8 +129,6 @@
   <ItemGroup>
     <ClInclude Include="CFunctions.h" />
     <ClInclude Include="Common.h" />
-    <ClInclude Include="CThread.h" />
-    <ClInclude Include="CThreadData.h" />
     <ClInclude Include="ml_base.h" />
     <ClInclude Include="extra\CLuaArgument.h" />
     <ClInclude Include="extra\CLuaArguments.h" />

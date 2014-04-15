@@ -98,7 +98,7 @@ int CFunctions::BcryptSalt( lua_State* L ) {
 		char entropy[ENTROPY_SIZE];
 
 		#ifdef WIN32
-			blowfish::rng_win32((unsigned char*)entropy, sizeof(entropy));
+			rng_win32((unsigned char*)entropy, sizeof(entropy));
 		#else
 			randomBytes( entropy, sizeof( entropy ) );
 		#endif
