@@ -18,14 +18,24 @@
 
 #include "CFunctions.h"
 #include "extra/CLuaArguments.h"
+#include <cstring>
 
-extern "C"
+namespace blowfish
 {
-	#include "ow-crypt.h"
+	extern "C"
+	{
+		#include "lib/blowfish/ow-crypt.h"
+	}
 }
 
 #ifndef WIN32
+	#include <sys/types.h>
+	#include <sys/stat.h>
 	#include <fcntl.h>
+	#include <unistd.h>
+#else
+	#include <windows.h>
+	#include <wincrypt.h>
 #endif
 
 #define HASH_SIZE 184
@@ -35,9 +45,6 @@ extern "C"
 static int urandom;
 
 #ifdef WIN32
-	#include <windows.h>
-	#include <wincrypt.h>
-
 	static unsigned long rng_win32(unsigned char *buf, unsigned long len)
 	{
 	   HCRYPTPROV hProv = 0;
@@ -71,7 +78,7 @@ int CFunctions::BcryptDigest ( lua_State* L )
 		const char* salt = luaL_checkstring( L, 2 );
 
 		char hash[ HASH_SIZE ];
-        crypt_rn( key, salt, hash, HASH_SIZE );
+        blowfish::crypt_rn( key, salt, hash, HASH_SIZE );
 
 		lua_pushlstring( L, hash, HASH_SIZE );
 
@@ -91,12 +98,12 @@ int CFunctions::BcryptSalt( lua_State* L ) {
 		char entropy[ENTROPY_SIZE];
 
 		#ifdef WIN32
-			rng_win32((unsigned char*)entropy, sizeof(entropy));
+			blowfish::rng_win32((unsigned char*)entropy, sizeof(entropy));
 		#else
 			randomBytes( entropy, sizeof( entropy ) );
 		#endif
 		
-		crypt_gensalt_rn( "$2y$", logRounds, entropy, sizeof( entropy ), salt, sizeof( salt ) );
+		blowfish::crypt_gensalt_rn( "$2y$", logRounds, entropy, sizeof( entropy ), salt, sizeof( salt ) );
 
 		lua_pushlstring( L, salt, sizeof( salt ) );
 
@@ -116,7 +123,7 @@ int CFunctions::BcryptVerify( lua_State* L ) {
 		char hash[ HASH_SIZE ];
 		memset( hash, 0, sizeof( hash ) );
 
-		crypt_rn( key, digest, hash, sizeof( hash ) );
+		blowfish::crypt_rn( key, digest, hash, sizeof( hash ) );
 
 		int verified = strncmp( hash, digest, sizeof( hash ) ) == 0;
 

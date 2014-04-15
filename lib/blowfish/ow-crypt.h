@@ -13,6 +13,7 @@
  *
  * See crypt_blowfish.c for more information.
  */
+
 #ifndef _OW_CRYPT_H
 #define _OW_CRYPT_H
 
