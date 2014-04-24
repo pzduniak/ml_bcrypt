@@ -23,12 +23,6 @@
     <ClCompile Include="CFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CThread.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CThreadData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ml_base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -44,12 +38,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CThread.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CThreadData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ml_base.h">
