@@ -11,7 +11,7 @@ Returns the hash.
 bcrypt_salt
 -----------
     string bcrypt_salt(int logRounds)
-Please visit [this link](http://security.stackexchange.com/questions/3959/recommended-of-iterations-when-using-pkbdf2-sha256/3993#3993) to determine the number of rounds appropriate for your server.
+Please visit [this link](http://security.stackexchange.com/questions/17207/recommended-of-rounds-for-bcrypt) to determine the number of rounds appropriate for your server.
 Returns the salt.
 
 bcrypt_verify
