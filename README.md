@@ -23,10 +23,14 @@ How to use this
 ===============
 Here's some code that explains the use of all these functions, remember that the database functions mentioned in this aren't real functions and are just for this demonstration.
 ```lua
+-- Get this information by conventional means
 myName = "qaisjp"
 myRegisterPassword = "Lolicon"
+
+-- When registering
 mySalt = bcrypt_salt(10000)
-savePasswordInDatabase(myName, bcrypt_digest(myRegisterPassword, mySalt))
+hashedPassword = bcrypt_digest(myRegisterPassword, mySalt)
+savePasswordInDatabase(myName, hashedPassword)
 
 -- Now I want to login
 myLoginPassword = "Lolicon"
