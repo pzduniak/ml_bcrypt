@@ -18,3 +18,19 @@ bcrypt_verify
 -------------
     bool bcrypt_verify(string key, string digest)
 Returns whether it is verified.
+
+How to use this
+===============
+Here's some code that explains the use of all these functions, remember that the database functions mentioned in this aren't real functions and are just for this demonstration.
+```lua
+myName = "qaisjp"
+myRegisterPassword = "Lolicon"
+mySalt = bcrypt_salt(10000)
+savePasswordInDatabase(myName, bcrypt_digest(myRegisterPassword, mySalt))
+
+-- Now I want to login
+myLoginPassword = "Lolicon"
+if bcrypt_verify(getPassword(myName), myLoginPassword) then
+    outputChatBox("Password verified")
+end
+```
