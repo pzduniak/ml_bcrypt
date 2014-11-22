@@ -34,7 +34,7 @@ savePasswordInDatabase(myName, hashedPassword)
 
 -- Now I want to login
 myLoginPassword = "Lolicon"
-if bcrypt_verify(getPassword(myName), myLoginPassword) then
+if bcrypt_verify(hashedPasswordFromDatabase, myLoginPassword) then
     outputChatBox("Password verified")
 end
 ```
