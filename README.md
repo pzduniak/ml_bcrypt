@@ -17,7 +17,7 @@ Returns the salt.
 bcrypt_verify
 -------------
     bool bcrypt_verify(string key, string digest)
-Returns whether it is verified.
+Returns whether it is verified. [How does it get the salt?](http://lmgtfy.co/?q=how+does+bcrypt+store+salt)
 
 How to use this
 ===============
