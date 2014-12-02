@@ -12,7 +12,7 @@ CPP = gcc
 # NOTE: add -g for debug, remove for release!
 CPPFLAGS = -m32 -MD -Wall -I./
 LDFLAGS = -fPIC -m32 -shared -Wl,-soname,$(PROG).1,-R./
-LIBS = -lstdc++ -llua
+LIBS = -lstdc++ -llua5.1
 
 #### End of system configuration section ####
 
