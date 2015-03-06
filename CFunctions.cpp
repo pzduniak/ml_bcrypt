@@ -28,7 +28,7 @@ namespace blowfish
 	}
 }
 
-#ifndef WIN32
+#if (!defined(WIN32) && !defined(WIN64))
 	#include <sys/types.h>
 	#include <sys/stat.h>
 	#include <fcntl.h>
