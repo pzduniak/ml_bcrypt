@@ -33,7 +33,7 @@ hashedPassword = bcrypt_digest(myRegisterPassword, mySalt)
 savePasswordInDatabase(myName, hashedPassword)
 
 -- Now I want to login
-myLoginPassword = "Lolicon"
+myLoginPassword = "LoLIcon"
 if bcrypt_verify(hashedPasswordFromDatabase, myLoginPassword) then
     outputChatBox("Password verified")
 end
