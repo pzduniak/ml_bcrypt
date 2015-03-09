@@ -25,7 +25,7 @@ Here's some code that explains the use of all these functions, remember that the
 ```lua
 -- Get this information by conventional means
 myName = "qaisjp"
-myRegisterPassword = "Lolicon"
+myRegisterPassword = "LoLIcon"
 
 -- When registering
 mySalt = bcrypt_salt(10000)
