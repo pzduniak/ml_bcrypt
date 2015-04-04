@@ -38,8 +38,8 @@ namespace blowfish
 #include <wincrypt.h>
 #endif
 
-#define HASH_SIZE 184
-#define SALT_SIZE 128
+#define HASH_SIZE 60
+#define SALT_SIZE 30 
 #define ENTROPY_SIZE 32
 
 static int urandom;
@@ -81,9 +81,8 @@ int CFunctions::BcryptDigest ( lua_State* L )
         const char* key = luaL_checkstring ( L, 1 );
         const char* salt = luaL_checkstring ( L, 2 );
 
-        char hash [HASH_SIZE];
-        blowfish::crypt_rn ( key, salt, hash, HASH_SIZE );
-
+        char hash [HASH_SIZE+1];
+        blowfish::crypt_rn ( key, salt, hash, sizeof(hash) );
         lua_pushlstring ( L, hash, HASH_SIZE );
 
         return 1;
@@ -109,7 +108,6 @@ int CFunctions::BcryptSalt ( lua_State* L )
 #endif
 
         blowfish::crypt_gensalt_rn ( "$2y$", logRounds, entropy, sizeof ( entropy ), salt, sizeof ( salt ) );
-
         lua_pushlstring ( L, salt, sizeof ( salt ) );
 
         return 1;
@@ -126,7 +124,7 @@ int CFunctions::BcryptVerify ( lua_State* L )
         const char* key = luaL_checkstring ( L, 1 );
         const char* digest = luaL_checkstring ( L, 2 );
 
-        char hash [HASH_SIZE];
+        char hash [HASH_SIZE+1];
         memset ( hash, 0, sizeof ( hash ) );
 
         blowfish::crypt_rn ( key, digest, hash, sizeof ( hash ) );
