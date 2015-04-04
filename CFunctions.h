@@ -31,8 +31,8 @@ class CFunctions
 public:
 
         static int BcryptDigest ( lua_State* luaVM );
-		static int BcryptSalt   ( lua_State* luaVM );
-		static int BcryptVerify ( lua_State* luaVM );
+        static int BcryptSalt   ( lua_State* luaVM );
+        static int BcryptVerify ( lua_State* luaVM );
 
 };
 #endif
