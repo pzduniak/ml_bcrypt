@@ -19,59 +19,20 @@
 #include "CFunctions.h"
 #include "extra/CLuaArguments.h"
 #include <cstring>
+#include <random>
+#include <algorithm>
 
 namespace blowfish
 {
     extern "C"
     {
-#include "lib/blowfish/ow-crypt.h"
+        #include "lib/blowfish/ow-crypt.h"
     }
 }
-
-#if (!defined(WIN32) && !defined(WIN64))
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
-#else
-#include <windows.h>
-#include <wincrypt.h>
-#endif
 
 #define HASH_SIZE 60
 #define SALT_SIZE 30 
 #define ENTROPY_SIZE 32
-
-static int urandom;
-
-#ifdef WIN32
-static unsigned long rng_win32 ( unsigned char *buf, unsigned long len )
-{
-    HCRYPTPROV hProv = 0;
-    if ( !CryptAcquireContext ( &hProv, NULL, MS_DEF_PROV, PROV_RSA_FULL,
-        ( CRYPT_VERIFYCONTEXT | CRYPT_MACHINE_KEYSET ) ) &&
-        !CryptAcquireContext ( &hProv, NULL, MS_DEF_PROV, PROV_RSA_FULL,
-        CRYPT_VERIFYCONTEXT | CRYPT_MACHINE_KEYSET | CRYPT_NEWKEYSET ) )
-        return 0;
-
-    if ( CryptGenRandom ( hProv, len, buf ) == TRUE )
-    {
-        CryptReleaseContext ( hProv, 0 );
-        return len;
-    }
-    else
-    {
-        CryptReleaseContext ( hProv, 0 );
-        return 0;
-    }
-}
-#else
-void randomBytes ( char* output, size_t bytes )
-{
-    urandom = open ( "/dev/urandom", O_RDONLY );
-    read ( urandom, output, bytes );
-}
-#endif
 
 
 int CFunctions::BcryptDigest ( lua_State* L )
@@ -100,12 +61,11 @@ int CFunctions::BcryptSalt ( lua_State* L )
 
         char salt [SALT_SIZE];
         char entropy [ENTROPY_SIZE];
-
-#ifdef WIN32
-        rng_win32 ( (unsigned char*) entropy, sizeof ( entropy ) );
-#else
-        randomBytes ( entropy, sizeof ( entropy ) );
-#endif
+        
+        std::random_device rd;
+        std::mt19937 gen ( rd ( ) );
+        std::generate_n ( entropy, ENTROPY_SIZE, gen );
+        
 
         blowfish::crypt_gensalt_rn ( "$2y$", logRounds, entropy, sizeof ( entropy ), salt, sizeof ( salt ) );
         lua_pushlstring ( L, salt, sizeof ( salt ) );

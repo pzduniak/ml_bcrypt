@@ -4,7 +4,7 @@ PROG = ml_bcrypt.so
 
 # Compiler flags
 # NOTE: add -g for debug, remove for release!
-CPPFLAGS = -m32 -MD -Wall -I./
+CPPFLAGS = -m32 -MD -Wall -std=c++11 -I./
 LDFLAGS = -fPIC -m32 -shared -Wl,-soname,$(PROG).1,-R./
 LIBS = -lstdc++ -llua5.1
 
