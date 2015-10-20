@@ -170,3 +170,12 @@ $RECYCLE.BIN/
 *.lai
 *.la
 *.a
+
+
+
+CMakeFiles
+*.cmake
+CMakeCache.txt
+*.vcxproj
+*.vcxproj.filters
+*.sln
