@@ -18,6 +18,7 @@ The project files are available in `Build/` then.
 make all # Builds all (both debug and release for x86 and x64 - you'll need gcc-multilib then, not recommended - use one of the commands below instead)
 make config=release_x86 all # Release build for the x86 platform
 make config=release_x64 all # Release build for the x86_64 platform
+```
 
 bcrypt_digest
 -------------
