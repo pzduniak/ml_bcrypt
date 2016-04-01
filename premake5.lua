@@ -5,6 +5,7 @@ solution "ml_bcrypt"
 	flags { "C++14", "Symbols" }
 	platforms { "x86", "x64" }
 	defines { "_CRT_SECURE_NO_WARNINGS" }
+	pic "On"
 
 	include "lib/blowfish"
 
@@ -32,16 +33,16 @@ solution "ml_bcrypt"
 			"extra/*.cpp",
 			"include/*.h"
 		}
-		
-		configuration "windows"
-			filter "platforms:x86"
-				links { "lua5.1.lib" }
-				
-			filter "platforms:x64"
-				links { "lua5.1_64.lib" }
-			
-		configuration "not windows"
-			links { "liblua5.1" }
-			
-		configuration "Release"
+
+		filter "configurations:Release"
 			flags { "Optimize", "NoMinimalRebuild" }
+	
+		filter "system:not windows"
+			links { "lua5.1" }
+			
+		filter { "system:windows", "platforms:x86" }
+			links { "lua5.1.lib" }
+			
+		filter { "system:windows", "platforms:x64" }
+			links { "lua5.1_64.lib" }
+
