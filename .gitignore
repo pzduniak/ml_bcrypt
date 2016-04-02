@@ -170,3 +170,5 @@ $RECYCLE.BIN/
 *.lai
 *.la
 *.a
+
+Build/
