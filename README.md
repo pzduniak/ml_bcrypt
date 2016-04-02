@@ -1,5 +1,4 @@
-ml_bcrypt - MTA bcrypt module
-=========
+# ml_bcrypt - MTA bcrypt module
 
 Bcrypt module for MTA:SA, for your passwords. Just three handy functions: `bcrypt_digest`, `bcrypt_salt`, and `bcrypt_verify`.
 
@@ -20,24 +19,21 @@ make config=release_x86 all # Release build for the x86 platform
 make config=release_x64 all # Release build for the x86_64 platform
 ```
 
-bcrypt_digest
--------------
+## Documentation
+### bcrypt_digest
     string bcrypt_digest(string key, string salt)
 Returns the hash.
 
-bcrypt_salt
------------
+### bcrypt_salt
     string bcrypt_salt(int logRounds)
 Please visit [this link](http://security.stackexchange.com/questions/17207/recommended-of-rounds-for-bcrypt) to determine the number of rounds appropriate for your server.
 Returns the salt.
 
-bcrypt_verify
--------------
+### bcrypt_verify
     bool bcrypt_verify(string key, string digest)
-Returns whether it is verified. [How does it get the salt?](http://lmgtfy.co/?q=how+does+bcrypt+store+salt)
+Returns whether it is verified. [How does it get the salt?](http://stackoverflow.com/a/6833165/1517394)
 
-How to use this
-===============
+### Example
 Here's some code that explains the use of all these functions, remember that the database functions mentioned in this aren't real functions and are just for this demonstration.
 ```lua
 -- Get this information by conventional means
