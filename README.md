@@ -2,6 +2,10 @@
 
 Bcrypt module for MTA:SA, for your passwords. Just three handy functions: `bcrypt_digest`, `bcrypt_salt`, and `bcrypt_verify`.
 
+# bcrypt will be added in [the next MTA version](https://github.com/multitheftauto/mtasa-blue/commit/422246213e10cba3e64eb9ef39ae787051c0501a) as the `passwordHash` and `passwordVerify` functions.
+
+-------
+
 ## Compiling
 ### Windows
 ```
